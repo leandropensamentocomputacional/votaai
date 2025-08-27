@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head><title>Votar em Projeto</title></head>
+<body>
+    <h2>Votar em Projeto</h2>
+    {% with messages = get_flashed_messages() %}
+      {% if messages %}
+        <ul>{% for msg in messages %}<li>{{ msg }}</li>{% endfor %}</ul>
+      {% endif %}
+    {% endwith %}
+    
+    <form method="post" action="/votar">
+        <label>Seu nome:</label>
+        <input type="text" name="nome_votante" required><br>
+        
+        <label for="email">Seu e-mail:</label>
+        <input type="email" name="email_votante" required><br><br>
+
+        <label for="projeto">Projeto:</label>
+        <select name="projeto_id" required>
+            {% for p in projetos %}
+                <option value="{{ p[0] }}">{{ p[1] }} ({{ p[2] }} - {{ p[3] }})</option>
+            {% endfor %}
+        </select><br><br>
+
+        <button type="submit">Votar</button>
+    </form>
+
+</body>
+</html>

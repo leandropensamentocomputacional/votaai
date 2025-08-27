@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+<head><title>Resultados</title></head>
+<body>
+    <h2>Resultados da Votação</h2>
+    <ul>
+        {% for p in projetos %}
+            <li><strong>{{ p[1] }}</strong> ({{ p[2] }} - {{ p[3] }})<br>
+            Alunos: {{ p[4] }}<br>
+            Descrição: {{ p[5] }}<br>
+            Votos: {{ p[6] }}</li><br>
+        {% endfor %}
+    </ul>
+</body>
+</html>

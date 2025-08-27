@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Cadastro de Projeto</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 20px; }
+        label { display: block; margin-top: 10px; }
+        input, select, textarea { width: 300px; padding: 5px; margin-top: 5px; }
+        button { margin-top: 15px; padding: 10px 20px; }
+        .flash { color: red; margin-bottom: 10px; }
+    </style>
+</head>
+<body>
+    <h2>Cadastro de Projeto</h2>
+
+    {% with messages = get_flashed_messages() %}
+      {% if messages %}
+        <div class="flash">
+          <ul>
+            {% for msg in messages %}
+              <li>{{ msg }}</li>
+            {% endfor %}
+          </ul>
+        </div>
+      {% endif %}
+    {% endwith %}
+
+    <form method="post" action="/cadastro">
+        <label>Nome do projeto:</label>
+        <input type="text" name="nome" required>
+
+        <label>Turma:</label>
+        <input type="text" name="turma" required>
+
+        <label>Turno:</label>
+        <select name="turno" required>
+            <option value="">Selecione</option>
+            <option value="Manhã">Manhã</option>
+            <option value="Tarde">Tarde</option>
+            <option value="Noite">Noite</option>
+        </select>
+
+        <label>Descrição:</label>
+        <textarea name="descricao" rows="4" required></textarea>
+
+        <label>Alunos:</label>
+        {% for i in range(1, 7) %}
+            <input type="text" name="aluno{{ i }}" placeholder="Aluno {{ i }}" {% if i <= 4 %}required{% endif %}>
+        {% endfor %}
+
+        <button type="submit">Cadastrar</button>
+    </form>
+</body>
+</html>
